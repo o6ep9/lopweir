@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+*.tsbuildinfo
+
+# Tests
+coverage/
+__screenshots__/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Environment (secrets, local paths)
+.env
+.env.*
+!.env.example
+*.local
+
+# Tool caches
+.eslintcache
+*.timestamp-*-*.mjs
+
+# Editors & OS
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.sw?
+.DS_Store
+
+# Local Claude Code settings
+.claude/settings.local.json
