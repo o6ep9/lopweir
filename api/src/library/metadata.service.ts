@@ -2,7 +2,7 @@ import { Injectable, OnModuleDestroy } from '@nestjs/common';
 import { ExifDateTime, ExifTool, type Tags } from 'exiftool-vendored';
 
 /** Where the capture date came from: the photo's own EXIF, or the file's modification time. */
-export type DateSource = 'exif' | 'mtime';
+export type DateSource = 'exif' | 'mtime' | 'original';
 
 /** Everything we extract from a single photo or video file. */
 export interface PhotoMeta {
