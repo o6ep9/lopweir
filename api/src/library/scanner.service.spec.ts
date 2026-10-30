@@ -73,4 +73,25 @@ describe('ScannerService', () => {
     expect(scanner.status.removed).toBe(1);
     expect(index.count()).toBe(before - 1);
   });
+
+  it('links edited copies and Live Photo videos to their originals', async () => {
+      await scanner.scan();
+
+      const byPath = new Map(index.all().map((p) => [p.path, p]));
+      const original = byPath.get('IMG_9829.JPG')!;
+
+      expect(original.parentId).toBeNull();
+      expect(byPath.get('IMG_9829-adjusted.JPG')).toMatchObject({ parentId: original.id, role: 'edited' });
+      expect(byPath.get('IMG_9829.MOV')).toMatchObject({ parentId: original.id, role: 'live' });
+      expect(byPath.get('IMG_0185.MOV')?.parentId).toBeNull();
+  });
+
+  it('gives an edited copy without EXIF the capture date of its original', async () => {
+      await scanner.scan();
+
+      const edited = index.all().find((p) => p.path === 'IMG_9829-adjusted.JPG');
+
+      expect(edited?.dateSource).toBe('original');
+      expect(edited?.takenLocal).toBe('2025-01-31T17:56:33');
+  });
 });

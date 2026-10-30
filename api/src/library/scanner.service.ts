@@ -122,6 +122,9 @@ export class ScannerService implements OnApplicationBootstrap {
                 );
             }
 
+            // 4. Now that every file is in the index, link edited copies and Live Photo videos to originals
+            this.index.linkPairs();
+
             this.status.state = 'done';
         } catch (err) {
             this.status.state = 'error';
