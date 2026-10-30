@@ -5,8 +5,8 @@ import { AppService } from './app.service.js';
 import { LibraryModule } from './library/library.module.js';
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true }), LibraryModule],
-  controllers: [AppController],
-  providers: [AppService],
+    imports: [ConfigModule.forRoot({ isGlobal: true }), LibraryModule],
+    controllers: [AppController],
+    providers: [AppService],
 })
 export class AppModule {}
